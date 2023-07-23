@@ -1,4 +1,4 @@
-service: eenadu-news
+service: grabEenaduNews
 
 frameworkVersion: '3'
 
@@ -6,13 +6,20 @@ frameworkVersion: '3'
 provider:
   name: aws
   runtime: python3.8
+  memorySize: 128
+  timeout: 30 #Seconds  
+  layers:
+    - arn:aws:lambda:us-east-1:859064164249:layer:telegram_bot_mod:1
+    - arn:aws:lambda:us-east-1:859064164249:layer:mysql-connector-python-mod:1
 
 functions:
   rateHandler:
     handler: handler.lambda_handler
-    #events:
+    name: grabEenaduNews
+    description: Grab Eenadu News and send to Telegram Channel
+    events:
       # Invoke Lambda function every minute
-      #- schedule: rate(1 minute)
+      - schedule: rate(15 minute)
   # cronHandler:
   #   handler: handler.run
   #   events:
