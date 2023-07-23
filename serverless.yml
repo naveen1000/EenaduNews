@@ -19,7 +19,7 @@ functions:
     description: Grab Eenadu News and send to Telegram Channel
     events:
       # Invoke Lambda function every minute
-      - schedule: rate(15 minute)
+      - schedule: rate(15 minutes)
   # cronHandler:
   #   handler: handler.run
   #   events:
